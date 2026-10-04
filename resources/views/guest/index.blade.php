@@ -71,7 +71,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-2">
                         <a href="#booking" class="btn btn-primary btn-sm px-3 py-2 text-nowrap" style="font-size: 13px; font-weight: 600;">Book A Table</a>
-                        <a href="#" class="btn btn-outline-light btn-sm px-3 py-2 text-nowrap" style="font-size: 13px; font-weight: 600;">Login / Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm px-3 py-2 text-nowrap" style="font-size: 13px; font-weight: 600;">Login / Register</a>
                     </div>
                 </div>
             </nav>
