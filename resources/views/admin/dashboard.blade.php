@@ -33,7 +33,7 @@
             <!-- BRAND LOGO RESTORIA (Dengan Badge Kuning Admin Panel) -->
             <div class="user-card d-flex align-items-center justify-content-start pb-3 mb-3 border-bottom border-gray-700">
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset('assets-admin/img/logo-restoria.jpeg') }}" class="avatar-md img-fluid rounded me-3" alt="Logo Restoria" style="object-fit: cover;">
+                    <img src="{{ asset('assets-admin/img/logo-restoria-fix.png') }}" class="avatar-md img-fluid rounded me-3" alt="Logo Restoria" style="object-fit: cover;">
                     <div class="d-block">
                         <h2 class="h5 mb-0 font-weight-bold text-white">Restoria</h2>
                         <span class="badge bg-warning text-dark mt-1">Admin Panel</span>
