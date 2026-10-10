@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\KategoriController;
 
 Route::get('/', [GuestController::class, 'index'])->name('home');
 Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
@@ -15,3 +16,5 @@ Route::get('/login', function(){
 Route::get('/register', function(){
     return view('auth.register');
     })->name('register');
+
+Route::resource('kategori', KategoriController::class);

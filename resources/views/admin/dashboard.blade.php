@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('kategori.index') }}" class="nav-link">
                         <span class="sidebar-icon"><i class="bi bi-tags"></i></span>
                         <span class="sidebar-text">Kelola Kategori</span>
                     </a>
