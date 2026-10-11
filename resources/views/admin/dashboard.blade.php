@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('menu.index') }}" class="nav-link">
                         <span class="sidebar-icon"><i class="bi bi-cup-hot"></i></span>
                         <span class="sidebar-text">Kelola Menu</span>
                     </a>
