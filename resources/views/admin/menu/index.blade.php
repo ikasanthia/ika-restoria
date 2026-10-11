@@ -101,7 +101,7 @@
                             <td><span class="fw-normal">{{ $item->nama_menu }}</span></td>
                             <td><span class="fw-normal">{{ $item->kategori->nama_kategori ?? '-' }}</span></td>
                             <td><span class="fw-bold">Rp {{ number_format($item->harga, 0, ',', '.') }}</span></td>
-                            <td><span class="fw-normal">{{ $item->deskripsi ?? '-' }}</span></td>
+                            <td style="width: 35%;">{{ $item->deskripsi ?? '-' }}</td>
                             <td>
                                 <a href="{{ route('menu.edit', $item->id) }}" class="btn btn-sm btn-info me-1">Edit</a>
                                 <form action="{{ route('menu.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus menu ini?')">
