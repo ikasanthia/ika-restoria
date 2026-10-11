@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\BannerController;
 
 Route::get('/', [GuestController::class, 'index'])->name('home');
 Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
@@ -21,3 +22,5 @@ Route::get('/register', function(){
 Route::resource('kategori', KategoriController::class);
 
 Route::resource('menu', MenuController::class);
+
+Route::resource('banners', BannerController::class);

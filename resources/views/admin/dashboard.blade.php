@@ -87,7 +87,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('banners.index') }}" class="nav-link">
                         <span class="sidebar-icon"><i class="bi bi-images"></i></span>
                         <span class="sidebar-text">Kelola Banner</span>
                     </a>
