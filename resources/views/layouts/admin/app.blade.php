@@ -35,18 +35,31 @@
         }
 
         /* 3. Custom Tombol Utama (Espresso Brown) */
-        .btn-gray-800, .btn-primary {
+        .btn-gray-800, .btn-primary, .btn-success {
             background-color: #5c4033 !important;
             border-color: #5c4033 !important;
             color: #ffffff !important;
         }
 
-        .btn-gray-800:hover, .btn-primary:hover {
+        .btn-gray-800:hover, .btn-primary:hover, .btn-success:hover {
             background-color: #432e25 !important;
             border-color: #432e25 !important;
         }
 
-        /* 4. Custom Card & Header Tabel */
+        /* 4. Custom Tombol Aksi di Tabel (Edit & Hapus) */
+        .table .btn-warning, .table .btn-info {
+            background-color: #8d6e63 !important; /* Cokelat kayu hangat untuk Edit */
+            border-color: #8d6e63 !important;
+            color: #ffffff !important;
+        }
+
+        .table .btn-danger {
+            background-color: #b05a46 !important; /* Merah bata / terracotta lembut untuk Hapus */
+            border-color: #b05a46 !important;
+            color: #ffffff !important;
+        }
+
+        /* 5. Custom Card & Header Tabel */
         .card {
             border-radius: 12px !important;
             border: 1px solid #efebe9 !important;

@@ -18,7 +18,7 @@
             <li class="nav-item">
                 <a href="{{ route('dashboard') }}" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
-                        <img src="{{ asset('assets-admin/img/brand/light.svg') }}" height="20" width="20" alt="Volt Logo">
+                        <img src="{{ asset('assets-admin/img/logo-restoria-fix.png') }}"  style="width: 42px; height: 42px; object-fit: contain; margin-right: 12px;">
                     </span>
                     <span class="mt-1 ms-1 sidebar-text">Restoria - Cafe & Resto</span>
                 </a>
@@ -98,8 +98,8 @@
             </li>
 
             <!-- Kelola Banner -->
-            <li class="nav-item {{ request()->routeIs('banner.*') ? 'active' : '' }}">
-                <a href="{{ Route::has('banner.index') ? route('banner.index') : '#' }}" class="nav-link">
+            <li class="nav-item {{ request()->routeIs('banners.*') ? 'active' : '' }}">
+                <a href="{{ Route::has('banners.index') ? route('banners.index') : '#' }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
