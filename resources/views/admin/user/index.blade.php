@@ -10,7 +10,7 @@
         <div>
             <a href="{{ route('user.create') }}" class="btn btn-primary"><i class="fas fa-plus me-2"></i>Tambah User</a>
         </div>
-    </div>
+</div>
 </div>
 
 {{-- Flash Data Alert --}}

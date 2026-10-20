@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class GuestController extends Controller
 {
-    public function index(){
-        return view('guest.index');
+    // Menampilkan halaman Home (guest/home.blade.php)
+    public function home()
+    {
+        return view('guest.home');
+    }
+
+    // Menampilkan halaman Contact Us (guest/contact.blade.php)
+    public function contact()
+    {
+        return view('guest.contact');
     }
 }
