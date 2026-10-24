@@ -6,30 +6,45 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman/form Login
+    // Menampilkan Halaman Form Login
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Memproses submit Form Login (Soal 2)
+    // Memproses Logika Login (Persyaratan UTS: Username === Password)
     public function login(Request $request)
     {
-        // Validasi inputan tidak boleh kosong
         $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
-        // Logika UTS: Jika Username dan Password SAMA PERSIS
         if ($request->username === $request->password) {
-            // Redirect ke route admin dashboard
-            return redirect()->route('dashboard')->with('success', 'Berhasil login!');
+            return redirect()->route('dashboard')->with('success', 'Selamat datang! Anda berhasil login sebagai Admin Restoria.');
         }
 
-        // Jika tidak sama, kembalikan ke halaman login dengan pesan error
         return redirect()->back()
             ->with('error', 'Login gagal! Username dan Password harus sama.')
             ->withInput();
+    }
+
+    // Menampilkan Halaman Form Register
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    // Memproses Registrasi (Simulasi Redirect ke Login dengan Alert Sukses)
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email',
+            'password' => 'required|min:4|confirmed',
+        ]);
+
+        // Setelah berhasil mendaftar, kirim alert sukses ke halaman login
+        return redirect()->route('login')->with('status', 'Registrasi akun berhasil! Silakan masuk dengan akun Anda.');
     }
 }

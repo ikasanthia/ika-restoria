@@ -1,30 +1,30 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="utf-8">
-    <title>Register - Restoria Cafe & Resto</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+@extends('layouts.guest.app')
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+@section('content')
+    <!-- Hero Header Start -->
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container my-5 py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-12 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Pendaftaran Akun</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Register</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Header End -->
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('assets-guest/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-guest/css/style.css') }}" rel="stylesheet">
-</head>
-
-<body class="bg-dark">
+    <!-- Register Form Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8">
-                    <div class="bg-white rounded p-4 p-sm-5 my-4 mx-3 shadow">
+                    <div class="bg-light rounded p-4 p-sm-5 my-4 shadow-sm border">
                         <div class="text-center mb-4">
                             <h1 class="text-primary ff-secondary fw-normal m-0"><i class="fa fa-utensils me-3"></i>Restoria</h1>
                             <p class="text-muted mt-2">Buat akun baru untuk mulai memesan & reservasi</p>
@@ -61,7 +61,7 @@
                                 <label for="password_confirmation">Konfirmasi Kata Sandi</label>
                             </div>
 
-                            <button class="btn btn-primary w-100 py-3 mb-3" type="submit">Daftar Sekarang</button>
+                            <button class="btn btn-primary w-100 py-3 mb-3 fw-bold" type="submit">Daftar Sekarang</button>
 
                             <div class="text-center">
                                 <p class="mb-0">Sudah punya akun? <a class="text-primary fw-bold" href="{{ route('login') }}">Login di sini</a></p>
@@ -73,5 +73,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+    <!-- Register Form End -->
+@endsection

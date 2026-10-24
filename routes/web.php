@@ -32,3 +32,6 @@ Route::resource('user', UserController::class);
 
 Route::get('/auth', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/auth', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);

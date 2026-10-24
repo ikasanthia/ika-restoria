@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restoria - Cafe & Resto</title>
-
-    {{-- Memanggil Partial CSS --}}
+    {{-- 1. Panggil CSS & Meta --}}
     @include('layouts.guest.css')
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body>
+    <div class="container-xxl bg-white p-0">
 
-    {{-- Memanggil Partial Header / Navbar --}}
-    @include('layouts.guest.header')
+        {{-- 2. Panggil Navbar Atas --}}
+        @include('layouts.guest.header')
 
-    {{-- Konten Utama Dinamis --}}
-    <main class="container py-5 flex-grow-1">
+        {{-- 3. Isi Konten Halaman (Home / Contact / Login) --}}
         @yield('content')
-    </main>
 
-    {{-- Memanggil Partial Footer --}}
-    @include('layouts.guest.footer')
+        {{-- 4. Panggil Footer Bawah --}}
+        @include('layouts.guest.footer')
 
-    {{-- Memanggil Partial JS --}}
+    </div>
+
+    {{-- 5. Panggil JS --}}
     @include('layouts.guest.js')
 </body>
 </html>
