@@ -478,44 +478,71 @@
                 <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservasi</h5>
                     <h1 class="text-white mb-4">Pesan Meja Secara Online</h1>
-                    <form>
+                    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        alert("Reservasi meja berhasil dikonfirmasi!");
+    </script>
+@endif
+                  <form action="{{ route('reservations.store') }}" method="POST">
+                        @csrf
+
                         <div class="row g-3">
+                            <!-- Baris 1: Nama & Email -->
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Nama Anda">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Nama Anda" required>
                                     <label for="name">Nama Anda</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Email Anda">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email Anda" required>
                                     <label for="email">Email Anda</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Tanggal & Waktu" data-target="#date3" data-toggle="datetimepicker" />
-                                    <label for="datetime">Tanggal & Waktu</label>
-                                </div>
-                            </div>
+
+                            <!-- Baris 2: Pilih Meja & Tanggal Waktu -->
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" id="select1">
-                                      <option value="1">1 Orang</option>
-                                      <option value="2">2 Orang</option>
-                                      <option value="3">3 Orang</option>
+                                    <select name="table_id" class="form-select" id="table_id" required>
+                                        <option value="">Pilih Meja</option>
+                                        @foreach($tables as $table)
+                                            <option value="{{ $table->id }}">
+                                                {{ $table->table_number }} - {{ $table->location }} (Kapasitas: {{ $table->capacity }} Orang)
+                                            </option>
+                                        @endforeach
                                     </select>
-                                    <label for="select1">Jumlah Orang</label>
-                                  </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Permintaan Khusus" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Permintaan Khusus</label>
+                                    <label for="table_id">Pilih Meja</label>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="datetime-local" name="reservation_date" class="form-control" id="reservation_date" required>
+                                    <label for="reservation_date">Tanggal & Waktu</label>
+                                </div>
+                            </div>
+
+                            <!-- Baris 3: Jumlah Orang & Catatan Khusus SEJAJAR -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" name="guests_count" class="form-control" id="guests_count" placeholder="Jumlah Orang" min="1" required>
+                                    <label for="guests_count">Jumlah Orang</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="special_requests" class="form-control" id="special_requests" placeholder="Catatan Khusus (Opsional)">
+                                    <label for="special_requests">Catatan Khusus (Opsional)</label>
+                                </div>
+                            </div>
+
+                            <!-- Tombol Submit -->
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Pesan Sekarang</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">Pesan Meja Sekarang</button>
                             </div>
                         </div>
                     </form>

@@ -73,9 +73,21 @@
                 </a>
             </li>
 
+            <!-- Kelola Meja -->
+            <li class="nav-item {{ request()->routeIs('tables.*') ? 'active' : '' }}">
+                <a href="{{ Route::has('tables.index') ? route('tables.index') : '#' }}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Kelola Meja</span>
+                </a>
+            </li>
+
             <!-- Kelola Reservasi -->
-            <li class="nav-item {{ request()->routeIs('reservasi.*') ? 'active' : '' }}">
-                <a href="{{ Route::has('reservasi.index') ? route('reservasi.index') : '#' }}" class="nav-link">
+            <li class="nav-item {{ request()->routeIs('reservations.*') ? 'active' : '' }}">
+                <a href="{{ Route::has('reservations.index') ? route('reservations.index') : '#' }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
@@ -84,7 +96,6 @@
                     <span class="sidebar-text">Kelola Reservasi</span>
                 </a>
             </li>
-
             <!-- Kelola Pelanggan -->
             <li class="nav-item {{ request()->routeIs('pelanggan.*') ? 'active' : '' }}">
                 <a href="{{ Route::has('pelanggan.index') ? route('pelanggan.index') : '#' }}" class="nav-link">

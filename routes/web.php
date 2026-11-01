@@ -8,6 +8,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TableController;
 
 Route::get('/', [GuestController::class, 'home'])->name('home');
 Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
@@ -35,3 +37,7 @@ Route::post('/auth', [AuthController::class, 'login']);
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+
+Route::resource('reservations', ReservationController::class);
+
+Route::resource('tables', TableController::class);
