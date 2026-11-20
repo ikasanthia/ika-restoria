@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Reservation;
 use App\Models\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -21,6 +22,9 @@ class ReservationController extends Controller
     // Menyimpan data reservasi dari tamu
     public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk melakukan reservasi meja.');
+        }
         $request->validate([
             'table_id' => 'required',
             'name' => 'required|string|max:255',
@@ -39,7 +43,7 @@ class ReservationController extends Controller
             'special_requests' => $request->special_requests,
         ]);
 
-        return redirect()->back()->with('success', 'Reservasi meja berhasil dikonfirmasi!');
+        return redirect()->back()->with('reservation_success', 'Reservasi meja berhasil dikonfirmasi!');
     }
 
     // Menampilkan form edit reservasi

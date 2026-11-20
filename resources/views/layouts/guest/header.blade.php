@@ -17,7 +17,32 @@
             </div>
             <div class="d-flex align-items-center gap-2">
                 <a href="{{ url('/') }}#booking" class="btn btn-primary btn-sm px-3 py-2 text-nowrap" style="font-size: 13px; font-weight: 600;">Book A Table</a>
-                <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm px-3 py-2 text-nowrap" style="font-size: 13px; font-weight: 600;">Login / Register</a>
+              @guest
+    <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark px-3 py-2 text-nowrap" style="font-size: 13px; font-weight: 600;">Login / Register</a>
+@else
+    <div class="dropdown text-nowrap">
+        <a href="#" class="btn btn-sm btn-warning text-dark dropdown-toggle px-3 py-2 d-flex align-items-center gap-1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 13px; font-weight: 600;">
+            <span>{{ Auth::user()->name }}</span>
+            <small class="fw-normal">({{ ucfirst(Auth::user()->role) }})</small>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end mt-2">
+            <li>
+                <span class="dropdown-item-text small text-muted">
+                    Role: <strong>{{ ucfirst(Auth::user()->role) }}</strong>
+                </span>
+            </li>
+            <li><hr class="dropdown-divider my-1"></li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="dropdown-item text-danger d-flex align-items-center">
+                        Keluar
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+@endguest
             </div>
         </div>
     </nav>

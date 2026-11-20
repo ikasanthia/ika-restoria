@@ -22,7 +22,12 @@
                         <div class="media d-flex align-items-center">
                             <img class="avatar rounded-circle" alt="Image placeholder" src="{{ asset('assets-admin/img/admin-profile.png') }}">
                             <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                <span class="mb-0 font-small fw-bold text-gray-900">{{ Auth::user()->name ?? 'Administrator' }}</span>
+                                <span class="mb-0 font-small fw-bold text-gray-900">
+                                    {{ Auth::user()->name ?? 'Administrator' }}
+                                    @auth
+                                        <small class="text-muted fw-normal">({{ ucfirst(Auth::user()->role) }})</small>
+                                    @endauth
+                                </span>
                             </div>
                         </div>
                     </a>
@@ -34,12 +39,15 @@
                             Profil Saya
                         </a>
                         <div role="separator" class="dropdown-divider my-1"></div>
-                        <a class="dropdown-item d-flex align-items-center text-danger" href="#">
-                            <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                            </svg>
-                            Keluar
-                        </a>
+                       <form method="POST" action="{{ route('logout') }}" class="m-0">
+                            @csrf
+                            <button type="submit" class="dropdown-item d-flex align-items-center text-danger w-100 border-0 bg-transparent">
+                                <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Keluar
+                            </button>
+                        </form>
                     </div>
                 </li>
             </ul>

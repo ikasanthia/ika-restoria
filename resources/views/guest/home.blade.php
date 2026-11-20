@@ -1,6 +1,7 @@
 @extends('layouts.guest.app')
 
 @section('content')
+
     <!-- Hero Start -->
     <div class="container-xxl py-5 bg-dark hero-header mb-5" id="home">
         <div class="container my-5 py-5">
@@ -478,15 +479,17 @@
                 <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservasi</h5>
                     <h1 class="text-white mb-4">Pesan Meja Secara Online</h1>
-                    @if(session('success'))
+                    @if(session('reservation_success'))
     <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-        {{ session('success') }}
+        {{ session('reservation_success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <script>
-        alert("Reservasi meja berhasil dikonfirmasi!");
+        alert("{{ session('reservation_success') }}");
     </script>
 @endif
+
+
                   <form action="{{ route('reservations.store') }}" method="POST">
                         @csrf
 

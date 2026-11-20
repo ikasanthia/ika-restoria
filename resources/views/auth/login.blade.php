@@ -27,7 +27,7 @@
                     <div class="bg-light rounded p-4 p-sm-5 my-4 shadow-sm border">
                         <div class="text-center mb-4">
                             <h1 class="text-primary ff-secondary fw-normal m-0"><i class="fa fa-utensils me-3"></i>Restoria</h1>
-                            <p class="text-muted mt-2">Masuk ke Sistem Admin Restoria</p>
+                            <p class="text-muted mt-2">Masuk ke Sistem Restoria</p>
                         </div>
 
                         {{-- Alert Error saat Login GAGAL (Soal 2) --}}
@@ -41,8 +41,8 @@
                         <form action="{{ url('/auth') }}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="text" name="username" class="form-control" id="username" placeholder="Username" value="{{ old('username') }}" required autofocus>
-                                <label for="username">Username</label>
+                                <input type="text" name="email" class="form-control" id="email" placeholder="name@example.com" value="{{ old('email') }}" required autofocus>
+                                <label for="email">Email</label>
                             </div>
 
                             <div class="form-floating mb-4">

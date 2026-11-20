@@ -2,49 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Menampilkan Halaman Form Login
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Memproses Logika Login (Persyaratan UTS: Username === Password)
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        if ($request->username === $request->password) {
-            return redirect()->route('dashboard')->with('success', 'Selamat datang! Anda berhasil login sebagai Admin Restoria.');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            $role = Auth::user()->role;
+
+            if ($role === 'admin') {
+                return redirect()->route('dashboard')
+                    ->with('success', 'Selamat datang, Admin!');
+            }
+
+            return redirect()->route('home')
+                ->with('success', 'Selamat datang, Pelanggan!');
         }
 
-        return redirect()->back()
-            ->with('error', 'Login gagal! Username dan Password harus sama.')
-            ->withInput();
+        return back()->withErrors([
+            'email' => 'Email atau password tidak sesuai.',
+        ])->onlyInput('email');
     }
 
-    // Menampilkan Halaman Form Register
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    // Memproses Registrasi (Simulasi Redirect ke Login dengan Alert Sukses)
     public function register(Request $request)
     {
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email',
-            'password' => 'required|min:4|confirmed',
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'min:4', 'confirmed'],
         ]);
 
-        // Setelah berhasil mendaftar, kirim alert sukses ke halaman login
-        return redirect()->route('login')->with('status', 'Registrasi akun berhasil! Silakan masuk dengan akun Anda.');
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => 'pelanggan',
+        ]);
+
+        return redirect()->route('login')
+            ->with('status', 'Registrasi akun berhasil! Silakan masuk.');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
     }
 }
