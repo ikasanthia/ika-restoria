@@ -31,6 +31,13 @@
                     Role: <strong>{{ ucfirst(Auth::user()->role) }}</strong>
                 </span>
             </li>
+            @if (session('last_login'))
+                <li>
+                    <span class="dropdown-item-text small text-muted">
+                        Login: {{ session('last_login') }}
+                    </span>
+                </li>
+            @endif
             <li><hr class="dropdown-divider my-1"></li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" class="m-0">

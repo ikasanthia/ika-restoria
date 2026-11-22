@@ -23,6 +23,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            session(['last_login' => now()]);
 
             $role = Auth::user()->role;
 
@@ -71,5 +72,30 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+    public function showForgotPasswordForm()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => ['required', 'email', 'exists:users,email'],
+            'password' => ['required', 'min:4', 'confirmed'],
+        ], [
+            'email.exists' => 'Email tersebut tidak terdaftar di sistem.',
+            'password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+            'password.min' => 'Password baru minimal 4 karakter.',
+        ]);
+
+        $user = User::where('email', $validated['email'])->first();
+        $user->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return redirect()->route('login')
+            ->with('status', 'Password berhasil direset! Silakan masuk dengan password baru.');
     }
 }

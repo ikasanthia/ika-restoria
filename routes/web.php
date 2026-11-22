@@ -35,6 +35,9 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'resetPassword'])->name('password.update');
+
 // Route khusus Admin (terproteksi RoleMiddleware)
 Route::middleware('role:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');

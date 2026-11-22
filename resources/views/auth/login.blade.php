@@ -30,10 +30,28 @@
                             <p class="text-muted mt-2">Masuk ke Sistem Restoria</p>
                         </div>
 
+                        @if (session('status'))
+                            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                                <i class="fa fa-check-circle me-2"></i>{{ session('status') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         {{-- Alert Error saat Login GAGAL (Soal 2) --}}
                         @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
                                 <i class="fa fa-exclamation-circle me-2"></i>{{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                                <ul class="mb-0 ps-3">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
@@ -45,9 +63,13 @@
                                 <label for="email">Email</label>
                             </div>
 
-                            <div class="form-floating mb-4">
+                            <div class="form-floating mb-2">
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
                                 <label for="password">Password</label>
+                            </div>
+
+                            <div class="d-flex justify-content-end mb-4">
+                                <a class="small text-primary" href="{{ route('password.request') }}">Lupa password?</a>
                             </div>
 
                             <button class="btn btn-primary w-100 py-3 mb-3 fw-bold" type="submit">Masuk</button>
